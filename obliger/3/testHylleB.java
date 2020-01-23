@@ -1,0 +1,26 @@
+public class testHylleB 
+
+// test som setter inn bok på en plass som ikke eksisterer
+
+{
+    public static void main (String[] args)
+   {
+        Hylle<Bok> mittBokskap;
+        mittBokskap = new Hylle<Bok>();
+        Bok Bok2 = new Bok("Things fall apart, Chinua Achebe");
+        if (mittBokskap.settInn(Bok2, 101) == true)
+        {
+            System.out.println("FEIL, har satt inn bok på en plass som ikke eksisterer, og boken har allikevel blitt satt inn i bokhyllen.");
+        }
+        else
+        {
+            System.out.println("OK, boken ble ikke satt inn på en plass som ikke eksisterer.");
+        }
+
+   }
+}
+
+/*
+Terminal> java testHylleB
+OK, boken ble ikke satt inn på en plass som ikke eksisterer.
+*/

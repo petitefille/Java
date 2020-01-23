@@ -1,0 +1,9 @@
+   public void infoOmTilstand(String word)
+    {
+       String navnPrint = musebolet.beboer.vekt
+        
+       System.out.println("--- " + word + " --- Info om mus: navn:" + + " , vekt: " + musebolet.beboer.vekt() + " , syk: " + " , lever: " +  );
+
+    --- B1 --- Info om mus: navn:musNr3, vekt:39, syk:false, lever:true     
+        
+    }

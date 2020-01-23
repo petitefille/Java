@@ -1,0 +1,143 @@
+import java.util.*;
+
+class TestProg {
+
+    public static void main (String[] a) {
+	LenkeListe<Skattbar> beholder = new LenkeListe<Skattbar>();
+
+	// tester at det er lov Ã¥ lage slike beholdere
+	// LenkeListe har parameteren <T extends Skattbar>
+	LenkeListe<Bil> bilBeholder = new LenkeListe<Bil>();
+	LenkeListe<Ost> OsteBeholder = new LenkeListe<Ost>();
+	LenkeListe<Drosje> drosjeBeholder = new LenkeListe<Drosje>();
+
+	Bil b = new Drosje();
+	beholder.settInnForan(b);
+	b = new Personbil();
+	beholder.settInnForan(b);
+	b = new Lastebil();
+	beholder.settInnForan(b);
+	b = new Bil();
+	beholder.settInnForan(b);
+
+	beholder.settInnForan(new Drosje());
+
+	beholder.settInnForan(new Hund());
+
+	beholder.settInnForan(new Ost(250));
+	beholder.settInnForan(new Hund());
+	beholder.settInnForan(new Ost(360));
+
+	Skattbar sk = null;
+
+	System.out.println("Iterering ved hjelp av et Iterator-objekt:");
+	Iterator<Skattbar> skatteiterator = beholder.iterator();
+	while ( skatteiterator.hasNext() ) {
+	    sk = skatteiterator.next();
+	    System.out.println("Dette er et skattebelagt objekt ["
+			       + sk + "] med skatt NOK " + sk.skatt());
+	}
+
+	System.out.println("Alternativ iterering (enhanced for loop): ");
+
+	for (Skattbar s: beholder) {
+	    System.out.println("Dette er et skattebelagt objekt ["
+			       + s + "] med skatt NOK " + s.skatt());
+	}
+         
+        
+        System.out.println("Skriver ut alle objektene i listen: ");
+        beholder.skrivUtInfoOmAlleObjekteneILista();
+        
+        System.out.println("Skriver ut alle skattebelagte i lista: ");
+        beholder.skrivUtAlleSkattebelagte();
+	   
+	System.out.println("Tar ut ett og ett objekt: ");
+
+	sk = beholder.taUtForan();
+	while ( sk != null ) {
+	    System.out.println("Dette er et skattebelagt objekt ["
+			       + sk + "] med skatt NOK " + sk.skatt());
+	    sk = beholder.taUtForan();
+	} 
+	    
+    }
+}
+
+/*
+java TestProg
+Setter inn en bil: Drosje@15db9742
+Setter inn en bil: Personbil@6d06d69c
+Setter inn en bil: Lastebil@7852e922
+Setter inn en bil: Bil@4e25154f
+Setter inn en bil: Drosje@70dea4e
+Setter inn noe annet: Hund@5c647e05
+Setter inn noe annet: Ost@33909752
+Setter inn noe annet: Hund@55f96302
+Setter inn noe annet: Ost@3d4eac69
+Iterering ved hjelp av et Iterator-objekt:
+Dette er et skattebelagt objekt [Ost@3d4eac69] med skatt NOK 1080
+Dette er et skattebelagt objekt [Hund@55f96302] med skatt NOK 500
+Dette er et skattebelagt objekt [Ost@33909752] med skatt NOK 750
+Dette er et skattebelagt objekt [Hund@5c647e05] med skatt NOK 500
+Dette er et skattebelagt objekt [Drosje@70dea4e] med skatt NOK 75000
+Dette er et skattebelagt objekt [Bil@4e25154f] med skatt NOK 300000
+Dette er et skattebelagt objekt [Lastebil@7852e922] med skatt NOK 150000
+Dette er et skattebelagt objekt [Personbil@6d06d69c] med skatt NOK 600000
+Dette er et skattebelagt objekt [Drosje@15db9742] med skatt NOK 75000
+Alternativ iterering (enhanced for loop): 
+Dette er et skattebelagt objekt [Ost@3d4eac69] med skatt NOK 1080
+Dette er et skattebelagt objekt [Hund@55f96302] med skatt NOK 500
+Dette er et skattebelagt objekt [Ost@33909752] med skatt NOK 750
+Dette er et skattebelagt objekt [Hund@5c647e05] med skatt NOK 500
+Dette er et skattebelagt objekt [Drosje@70dea4e] med skatt NOK 75000
+Dette er et skattebelagt objekt [Bil@4e25154f] med skatt NOK 300000
+Dette er et skattebelagt objekt [Lastebil@7852e922] med skatt NOK 150000
+Dette er et skattebelagt objekt [Personbil@6d06d69c] med skatt NOK 600000
+Dette er et skattebelagt objekt [Drosje@15db9742] med skatt NOK 75000
+Skriver ut alle objektene i listen: 
+Ost@3d4eac69, 1028566121, Ost ...... noe skattbart !
+Hund@55f96302, 1442407170, Hund ...... noe skattbart !
+Ost@33909752, 865113938, Ost ...... noe skattbart !
+Hund@5c647e05, 1550089733, Hund ...... noe skattbart !
+Drosje@70dea4e, 118352462, Drosje ..... er en bil (Bil eller subklasse av Bil) !
+     Dette var faktisk en bil med skatt: 75000
+    Dette var faktisk en drosje med skatt: 75000
+     Dette var faktisk en bil med skatt: 75000
+Bil@4e25154f, 1311053135, Bil ..... er en bil (Bil eller subklasse av Bil) !
+     Dette var faktisk en bil med skatt: 300000
+     Dette var faktisk en bil med skatt: 300000
+Lastebil@7852e922, 2018699554, Lastebil ..... er en bil (Bil eller subklasse av Bil) !
+     Dette var faktisk en bil med skatt: 150000
+     Dette var faktisk en bil med skatt: 150000
+Personbil@6d06d69c, 1829164700, Personbil ..... er en bil (Bil eller subklasse av Bil) !
+     Dette var faktisk en bil med skatt: 600000
+     Dette var faktisk en bil med skatt: 600000
+Drosje@15db9742, 366712642, Drosje ..... er en bil (Bil eller subklasse av Bil) !uio
+     Dette var faktisk en bil med skatt: 75000
+    Dette var faktisk en drosje med skatt: 75000
+     Dette var faktisk en bil med skatt: 75000
+Skriver ut alle skattebelagte i lista: 
+ SKATTEBELAGTE: 
+Et skattebelagt objekt (Ost@3d4eac69) med skatt: 1080
+Et skattebelagt objekt (Hund@55f96302) med skatt: 500
+Et skattebelagt objekt (Ost@33909752) med skatt: 750
+Et skattebelagt objekt (Hund@5c647e05) med skatt: 500
+Et skattebelagt objekt (Drosje@70dea4e) med skatt: 75000
+Et skattebelagt objekt (Bil@4e25154f) med skatt: 300000
+Et skattebelagt objekt (Lastebil@7852e922) med skatt: 150000
+Et skattebelagt objekt (Personbil@6d06d69c) med skatt: 600000
+Et skattebelagt objekt (Drosje@15db9742) med skatt: 75000
+Tar ut ett og ett objekt: 
+Dette er et skattebelagt objekt [Ost@3d4eac69] med skatt NOK 1080
+Dette er et skattebelagt objekt [Hund@55f96302] med skatt NOK 500
+Dette er et skattebelagt objekt [Ost@33909752] med skatt NOK 750
+Dette er et skattebelagt objekt [Hund@5c647e05] med skatt NOK 500
+Dette er et skattebelagt objekt [Drosje@70dea4e] med skatt NOK 75000
+Dette er et skattebelagt objekt [Bil@4e25154f] med skatt NOK 300000
+Dette er et skattebelagt objekt [Lastebil@7852e922] med skatt NOK 150000
+Dette er et skattebelagt objekt [Personbil@6d06d69c] med skatt NOK 600000
+Dette er et skattebelagt objekt [Drosje@15db9742] med skatt NOK 75000
+
+*/
+

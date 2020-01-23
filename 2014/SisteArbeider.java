@@ -1,0 +1,4 @@
+class SisteArbeider extends Arbeider
+{
+	
+}

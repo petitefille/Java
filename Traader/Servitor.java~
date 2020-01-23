@@ -1,0 +1,18 @@
+class Servitor extends Thread {
+    private FellesBord bord;
+	private final int ANTALL;
+	private int servert = 0;
+	Servitor(FellesBord bord, int ant) {
+	    this.bord = bord; ANTALL = ant;
+	}
+	
+	public void run() {
+	    while (ANTALL != servert) {
+		    bord.hentTallerken(); /* hent tallerken og server */
+			servert++;
+			System.out.println("Servitoer serverer nr:" + servert);
+			try { sleep((long) (1000 * Math.random()));
+			} catch (InterruptedException e) {}
+		} // Servitoeren er ferdig
+	}
+}

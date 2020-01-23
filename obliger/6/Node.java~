@@ -1,0 +1,9 @@
+public class Node<T extends Comparable<T> & Lik>
+    {
+        Node(T t)
+        { 
+            objektet = t;
+        }
+        Node neste;
+        T objektet;
+    }

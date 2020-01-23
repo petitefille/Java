@@ -1,0 +1,45 @@
+
+oppgave tekst: http://heim.ifi.uio.no/inf1010/v15/oblig/6/Oblig6-2015.pdf
+22 Mar, 21:40
+Emily de Vibe
+Fredrik de Vibe
+ok
+hvor ligger filene?
+Fredrik • 22 Mar, 21:41
+de ligger på uio, i INF1010/obliger/6
+22 Mar, 21:41
+Emily de Vibe
+Fredrik de Vibe
+ok, da må du gå ett hakk opp
+(til INF1010/obliger
+Fredrik • 22 Mar, 21:42
+altså ~/INF1010/obliger/6
+ok'
+22 Mar, 21:42
+Emily de Vibe
+Fredrik de Vibe
+så skriver du chmod -R a+rX 6
+-R betyr recursive (gå ned i underkataloger)
+a+r gir Alle Read access
+Fredrik • 22 Mar, 21:43
+ok
+22 Mar, 21:43
+Emily de Vibe
+Fredrik de Vibe
+a+X gir eXecute-rettigheter, men kun til kataloger (x gir til alt, også filer)
+Fredrik • 22 Mar, 21:43
+har du tilgang til filene mine nå?
+22 Mar, 21:44
+Emily de Vibe
+Fredrik de Vibe
+jepp
+Fredrik • 22 Mar, 21:44
+bra
+22 Mar, 21:44
+Emily de Vibe
+Fredrik de Vibe
+jeg skjønner ikke helt ennå hva som er problemet :)
+ikke at jeg har forstått oppgaven fullt ut ennå alså, for all del
+men kan du utdype litt?
+Fredrik • 22 Mar, 22:03
+SortertEnkelListe er en generisk klasse hvor jeg kan lagre objekter ved bruk av lenkelister som jeg lager selv og ikke ved bruk av Java biblioteket. Her har jeg da laget en privat klasse Node. (Jeg vet ikke helt om du husker, men spurte deg om dette ang. en oblig jeg hadde hvor jeg skulle lage e

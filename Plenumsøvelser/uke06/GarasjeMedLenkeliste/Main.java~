@@ -1,0 +1,14 @@
+class Main {
+	public static void main(String[] args) {
+	
+		Garasje g = new Garasje();
+		
+		for (int i = 0; i < 5; i++) {
+			g.settInn(new Bil(i));
+		}
+		
+		for (Bil b : g) {
+			System.out.println(b);
+		}
+	}
+}

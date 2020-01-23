@@ -1,0 +1,6 @@
+public class TallvariablerA {
+    public static void main(String[] args){
+        int four = 2 + 2
+        System.out.println("2 + 2 =" + four);
+    }
+}       

@@ -1,0 +1,18 @@
+2  // Antall Rader i hver Boks, en Boks har altså antall Rad = 2
+
+
+
+3
+// Antall Kolonner i hver Boks - en Boks har 3 Kolonner 
+
+Husk at fil kan også inneholde bokstaver, og man er derfor nødt til å ta hensun til dette 
+Lagre denne infoen som [][] Ruter 
+antall rader = (antall Rader x antall Kolloner)
+antall kolonner = (antall Rader x antall Kolloner)
+antall ruter totalt = (antall Rader x antall Kolloner)** 2
+..36..     
+.2...4
+5...6.
+.3...5
+3...1.
+..14..

@@ -1,0 +1,213 @@
+public class AntallR
+{
+    //final int maxVerdiInt = Integer.MAX_VALUE;
+    //int [ ] tabell;
+ 
+    ArrayList<String> words;
+    String[][] wordsSublists;
+    int k = 8;
+    String givenWord = "scolecid";
+    int counterWord = 0;
+    double antallOrdPerK;
+    int antallOrdPerKInt;
+    AntallMonitor monitor;
+
+    public static void main(String[ ] args)
+    {
+     new AntallR();
+    }
+	
+    public AntallR()
+	{
+        File inputFile = new File("minfil.txt");
+        Scanner in = new Scanner(inputFile);
+		String line = in.nextLine();
+		String cS = Character.toString(line.charAt(0));
+        int number = Integer.parseInt(cS);
+        ArrayList<String> words = new ArrayList<String>(number);
+		while (in.hasNextLine())
+		{    
+		    line = in.nextLine();
+			int lengde = line.length();
+			String w = line.substring(0,lengde);
+            words.add(w);
+        }	
+ //tabell = new int[640000];
+//for (int in = 0; in< 640000; in++)
+ //tabell[in] = (int)Math.round(Math.random()* maxVerdiInt);
+        monitor = new AntallMonitorR();
+
+
+/// System.argv givenWord k 
+
+
+            // if k = 10000
+			 
+
+               //int k = 8; 
+		double antallOrdTotalt = words.size();
+		int antallOrdTotaltInt = (int) antallOrdTotalt;
+		double antallOrdPerK = (antallOrdTotalt/k);
+		//System.out.println(antallOrdPerK);
+		long antallOrdPerKL =(long)antallOrdPerK;
+		int antallOrdPerKInt = (int) antallOrdPerKL;
+		//ArrayList<ArrayList<String>> wordsSubLists = new ArrayList<ArrayList<String>>();
+		int task = antallOrdPerKInt+1;
+		String[][] wordsSublists = new String[k][task];
+		//ArrayList<String>[][] part = new ArrayList<String>[2][5];
+        //runde ned;
+		//int q = divide*k; // runde ned
+		//if q != words.length
+		if (k != 1 && antallOrdPerK == (int) antallOrdPerK)
+		{
+		    int maxI = k;
+			int maxJ = k+1;
+            //System.out.println(wordsSublists);
+            //System.out.print(wordsSublists.length());
+            for (int i = 0; i < k; i++) 
+            {
+				ArrayList<String> time = new ArrayList<String>(words.subList(i*antallOrdPerKInt,((i+1)*(antallOrdPerKInt))));
+				//int v = i*antallOrdPerKInt;
+				//int a = (i+1)*(antallOrdPerKInt);
+				//System.out.println(v + " v");
+				//System.out.println(a  + " a");
+				//System.out.println(time);
+				//wordsSubLists.add(new ArrayList<String>());
+				Object[] times2 = time.toArray();
+				//String[] times3 = (String[]) times2;
+				//wordsSubLists.add(i,time);
+			    String[] times3 = Arrays.copyOf(times2, times2.length, String[].class);
+				int c = times3.length;
+				System.out.println(c+ " times3 length");
+				for (int m = 0; m < times3.length; m++)
+				{
+					wordsSublists[i][m] = times3[m];
+				}
+				//wordsSublists[i][antallOrdPerKInt] = "";
+            }
+			//if (k != 1 && antallOrdPerK == (int) antallOrdPerK)
+            //for (int i = 0; i< k; i++)
+            // Lag og start 64 tråder
+             //new AntallTradR(tabell,   i*10000,    ((i+1)*10000)-1,monitor).start();
+            for (int z = 0; z < k; z++;)
+			{
+			    new AntallTrad(wordsSublists[z], monitor, antallOrdPerKInt, givenWord).start();
+			}
+			monitor.vent();
+            System.out.println("Antall ganger ordet: " + givenWord + " fantes var: " + monitor.hentAntall());
+             
+		}
+		if (k!=1 && antallOrdPerK != (int) antallOrdPerK)
+		{
+			int maxI = k-1;
+			int maxJ = k;
+            //System.out.println(wordsSublists);
+            //System.out.print(wordsSublists.length());
+            for (int i = 0; i <= maxI; i++) 
+            {
+				ArrayList<String> time = new ArrayList<String>(words.subList(i*antallOrdPerKInt,((i+1)*(antallOrdPerKInt))));
+				//int v = i*antallOrdPerKInt;
+				//int a = (i+1)*(antallOrdPerKInt);
+				//System.out.println(v + " v");
+				//System.out.println(a  + " a");
+		     	//System.out.println(time);
+				//wordsSubLists.add(new ArrayList<String>());
+				Object[] times2 = time.toArray();
+				//String[] times3 = (String[]) times2;
+				//wordsSubLists.add(i,time);
+				String[] times3 = Arrays.copyOf(times2, times2.length, String[].class);
+				int c = times3.length;
+				//System.out.println(c+ " times3 length");
+				for (int m = 0; m < times3.length; m++)
+				{
+					wordsSublists[i][m] = times3[m];
+				}
+				//wordsSublists[i][antallOrdPerKInt] = "";
+            }
+			ArrayList<String> rest = new ArrayList<String>(words.subList(k*antallOrdPerKInt,(antallOrdTotaltInt )));
+			int x = k*antallOrdPerKInt;
+			int y =(antallOrdTotaltInt - 1);
+			//System.out.println(x+ " x");
+			//System.out.println(y+ " y");
+			Object[] rest2 = rest.toArray();
+			//String[] rest3 = (String[]) rest2;
+			String[] rest3 = Arrays.copyOf(rest2, rest2.length, String[].class);
+			int rest3Lengde = rest3.length;
+			//System.out.println(rest3Lengde+ " rest3Lengde");
+			//System.out.println(antallOrdPerKInt+ " antallOrdPerK");
+			for (int i = 0; i< rest3Lengde; i++)
+			{
+				wordsSublists[i][antallOrdPerKInt] = rest3[i];
+			    //String event = rest.get(i);
+				//wordsSubLists.set(i,antallOrdPerKInt, event);
+			}
+			//int work = k-rest3Lengde;
+			//for (int j = 1; j <= work; j++ )
+			//{
+				//wordsSublists[k-j][antallOrdPerKInt]
+			//}	
+			//int lo = wordsSublists[4].length;
+			//	System.out.println(lo + " lengde 0 nye liste");
+			//for(int i = 0; i< wordsSublists[7].length; i++)
+			//	{
+			//	String wordy = wordsSublists[7][i];
+			//	System.out.println(wordy);
+			//	}	
+			//String givenWord = "scolecid";
+			//int counterWord;
+			//lage k andre trader		
+			//for (int z = 0; z < k; z++)
+			//{
+			//  for (int y = 0; y <= antallOrdPerKInt; y++;)
+			//  {
+			//      String wordIt = wordsSublists[z][y];
+					 //if (wordIt.equals(givenWord))
+					//	{
+						//    counterWord ++;	
+						//}	
+			//	}
+            //if (k!=1 && antallOrdPerK != (int) antallOrdPerK)
+            for (int z = 0; z < k; z++)
+		    {
+		        new AntallTrad(wordsSublists[z], monitor,antallOrdPerKInt, givenWord).start();
+		    }
+			monitor.vent();
+            System.out.println("Antall ganger ordet: " + givenWord + " fantes var: " + monitor.hentAntall());
+           // Lag og start 64 tråder
+           //new AntallTradR(tabell,   i*10000,    ((i+1)*10000)-1,monitor).start();
+          //   new AntallTrad(wordsSublists[z], monitor).start();
+			
+		}		
+        if k == 1
+		{
+		    Object[] words2 = words.toArray();
+			String[] words3 = Arrays.copyOf(words2, words2.length, String[].class);
+		    int len = words3.size;
+		   new AntallTrad(words3, monitor, len, givenWord).start();
+		   monitor.vent();
+           System.out.println("Antall ganger ordet: " + givenWord + " fantes var: " + monitor.hentAntall());
+		}
+   //new AntallTRadR1(words,monitor).start();
+//if (k != 1 && antallOrdPerK == (int) antallOrdPerK)
+//for (int i = 0; i< k; i++)
+ // Lag og start 64 tråder
+ //new AntallTradR(tabell,   i*10000,    ((i+1)*10000)-1,monitor).start();
+     
+// new AntallTrad(wordsSublists[z], monitor).start();
+//if (k!=1 && antallOrdPerK != (int) antallOrdPerK)
+//for (int i = 0; i< k; i++)
+ // Lag og start 64 tråder
+ //new AntallTradR(tabell,   i*10000,    ((i+1)*10000)-1,monitor).start();
+     
+// new AntallTrad(wordsSublists[z], monitor).start();
+
+//for (int i = 0; i< k; i++)
+ // Lag og start 64 tråder
+// new AntallTradR(tabell,   i*10000,    ((i+1)*10000)-1,monitor).start();
+     
+ //new AntallTrad(wordsSublists[z], monitor).start();
+ 
+ //monitor.vent();
+ //System.out.println("Minste verdi var: " + monitor.hentMinste());
+    }
+}

@@ -1,0 +1,26 @@
+for (int j = 0; j < svar2.length; j++)
+			{
+				if (this.type != true)
+				{
+					String s = svar2[j];
+				
+				    this.verdi = s;
+				    this.type = true;
+				}	
+				if (this.neste != null)
+				{
+					this.neste.fyllInnDenneOgResten();
+				}
+				this.verdi = s;
+				this.type = true; 
+                System.out.println(" j " + j);
+				System.out.println(" s " + s);
+                this.neste.fyllInnDenneOgNeste();						
+				while((nesteTall = finnAlleMuligeTall()) != null) 
+				{ ... }
+		    	
+			    
+				
+				
+				
+			}	

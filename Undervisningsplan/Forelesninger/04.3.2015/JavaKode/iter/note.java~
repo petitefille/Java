@@ -1,0 +1,18 @@
+/*
+[emilyd@fingon iter]$ java TestProg ha et varm god
+Setter inn et objekt av klassen java.lang.String: ha
+Setter inn et objekt av klassen java.lang.String: et
+Setter inn et objekt av klassen java.lang.String: varm
+Setter inn et objekt av klassen java.lang.String: god
+god
+varm
+et
+ha
+Hei og hÃ¥
+god
+varm
+et
+ha
+
+*/
+

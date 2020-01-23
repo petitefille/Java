@@ -1,0 +1,6 @@
+http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe
+
+når du klikker på putty.exe får du opp en dialog med en masse felter, ikke sant?
+så skrev du inn login.ifi.uio.no under host name?
+(og lot den stå på SSH (med port 22)?
+

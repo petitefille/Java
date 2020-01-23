@@ -1,0 +1,33 @@
+class Resepter 
+{
+    
+	private int nummer;
+	private static int teller = 0;
+	private int reit;
+	
+	
+	
+	Legemiddel l;
+	Leger le;
+	Personer p;
+	
+	public boolean gyldighet()
+	{
+        return (this.reit != 0);
+        }
+	
+        public int getNummer()
+        {
+            return nummer;
+        }
+	
+	
+	
+	public Resepter()
+	{
+	  this.nummer = teller++;
+	  this.reit--;
+	}
+	
+	
+}

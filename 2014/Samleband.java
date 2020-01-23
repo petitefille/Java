@@ -1,0 +1,35 @@
+import java.lang.NumberFormatException;
+
+public class Samleband
+{
+    AntallMonitor monitor;
+
+    public static void main(String[ ] args) throws NumberFormatException
+	{
+		String outfileName;
+		String infileName;
+		int antallTraader;
+		if (args.length > 2)
+		{
+			try
+			{
+			    			
+				antallTraader = Integer.parseInt(args[0]);
+				infileName = args[1];	
+				outfileName = args[2];
+				new ForsteArbeider(antallTraader, monitor, infileName, outfileName).start();
+			}           			
+            catch (NumberFormatException e) 
+			{
+                System.err.println("Argumentet" + args[0] + " maa vaere antall traader(altsaa en int),\n argumentet" + args[1] + " maa vaere navnet paa input filen (altsaa en String),\n og argumentet" + args[2]+ " maa vaere navnet paa output filen (altsaa en String)." );
+                System.exit(1);
+		    }
+        }
+        else
+        {
+			System.out.println("Man maa oppgi antall traader, navnet paa input filen og navnet paa output filen i kommando linjen!");
+		}			
+				
+    }
+	
+}	

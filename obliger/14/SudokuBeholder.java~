@@ -1,0 +1,58 @@
+
+import java.util.ArrayList;
+
+
+class SudokuBeholder {
+	// Konstanter
+	private static final int MAKS = 2500;
+
+	// Variabler
+	private Svar tomtSvar;
+	private ArrayList<Svar> svar;
+	private int antallSvar;
+
+	// Konstruktoer	
+	SudokuBeholder(Svar tomtSvar) {
+		this.tomtSvar = tomtSvar;
+		this.svar = new ArrayList<Svar>(MAKS);
+	}
+
+	// offentlig metode settInn
+	public void settInn(Svar s) {
+		this.antallSvar++;
+
+		if (this.svar.size() < MAKS) {
+			// Legg til
+			svar.add(s);
+		}
+	}
+	
+
+	// iffentlig metode ta ut, som tar ut loesninge
+	public Svar taUt(int indeks) {
+		if (indeks < this.svar.size())
+			return this.svar.get(indeks);
+
+		return null;
+	}
+
+	// Offentlig metode Returner antall loesninger
+	public int hentAntallSvar() {
+		return this.antallSvar;
+	}
+
+	// Returnerer losninger
+	public ArrayList<Svar> hentSvar() {
+		return this.svar;
+	}
+
+	// Returnerer maks lagrede loesninger
+	public int hentMaks() {
+		return MAKS;
+	}
+
+	// Returnerer tom losning
+	public Svar hentTomtSvar() {
+		return this.tomtSvar;
+	}
+}

@@ -1,0 +1,49 @@
+import java.util.*;
+
+/**
+ * En konto har en eier identifisert av en tekst (String)
+ *
+**/
+
+class Konto{
+
+    private String navn;
+    private double saldo;
+
+    /*
+     * Konstruktoer setter kontoens saldo til 0.
+     * @param n    navn paa kontoens eier
+     */
+    Konto(String n){
+        navn = n;
+        saldo = 0;
+    }
+
+    /**
+     * Setter inn et beloep
+     * @param b   beloep
+     */
+    public void settInn(double b){
+        saldo += b;
+    }
+
+  /**
+    * Henter saldoen.
+    *
+    * @return saldo paa konto
+    */
+    public double hentSaldo(){
+        return saldo;
+    }
+
+    /**
+     * Henter saldoen.
+     *@return saldo paa konto
+     */
+     public String hentEier(){
+        return navn;
+    }
+}
+
+
+

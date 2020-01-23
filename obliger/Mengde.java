@@ -1,0 +1,8 @@
+class Mengde<E>
+{
+    public boolean tom()
+    {
+        return true;
+    }
+}
+

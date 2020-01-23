@@ -1,0 +1,41 @@
+int k = 1; 
+				int antallOrdTotalt = words.length();
+				int antallOrdPerK = float(v/k);
+                String[][] wordsSublists = null;
+				//runde ned;
+				int q = divide*k; // runde ned
+				if q != words.length
+				
+				
+				if (k != 1 && antallOrdPerK == (int))
+					
+				{
+				    wordsSubList = new String[k][antallOrdPerK];
+					String[] wordsSubList0 = new String 
+					words.subList(0, antallOrdPerK--);
+					for int i = 0; i < 
+					    wordsSubList[0][i] = wordsSubList0[i]
+					for (int i = 1; i< k; i++; && int j = 2; j <= k; j++)
+					    words.sublist(i*antallOrdPerK, (j*antallOrdPerK)--);
+					    
+						
+                    					
+				}
+				else
+					
+				{
+				    int value = v-q;
+					for i = 0 < k
+					array 1 = sublist(0,k)
+					array2 = subslist(k,2*k )
+					array 3 = sublist(2*k,3*k+rest )
+                       					
+
+      			}
+				else
+				{
+				    for int m = 0; i < k < m++ 	
+					    sublist(0,divide)
+						sublist(divide++,)
+				}	
+			}

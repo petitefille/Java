@@ -1,0 +1,4 @@
+class ForsteArbeider extends Arbeider
+{
+	
+}

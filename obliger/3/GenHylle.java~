@@ -1,0 +1,36 @@
+interface GenHylle<E> {
+
+   
+   
+
+// sette noe inn på en gitt på en gitt plass (hvis det er ledig der)
+    
+
+    public boolean settInn(E elem, int plass);
+        
+   
+
+    public boolean inneholder(int plass);
+    
+    
+       
+    public void fjern(int plass);
+
+    
+    
+    
+       
+  
+    
+
+}
+
+/*
+3 d)
+
+for at obligen ikke skal bli for lang benytter man i resten av oppgaven ikke muligheten til å låne ut bøker
+
+ skriv det generiske grensesnittet GenHylle. Dette grensesnittet beskriver en hylle der et fast antall ting kan plasseres. 
+Du skal kunne spørre hyllen om dens størrelse, du skal kunne sette noe inn på en gitt plass (hvis det er ledig der), du skal kunne sjekke om en bestemt plass er ledig, og du skal kunne ta ut noe fra en bestemt plass. En plass er et nummer mellom 0 og hyllestørrelsen.
+
+*/

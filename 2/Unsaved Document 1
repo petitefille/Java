@@ -1,0 +1,5 @@
+en klasse med en generisk parameter 
+en beholder 
+vilkårlig mange objekter av samme type
+
+indre klasse Node som beskriver objekter som kan lenkes sammen

@@ -1,0 +1,5 @@
+public class Oppgave {
+	public static void main(String[] args) {
+		Skyskraper s = new Skyskraper(1000, 30);
+	}
+}

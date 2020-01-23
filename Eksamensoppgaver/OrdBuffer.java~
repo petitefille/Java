@@ -1,0 +1,210 @@
+import java.util.ArrayList;
+import java.lang.InterruptedException;
+
+
+class OrdBuffer implements Monitor
+{
+	private int MAKS = 10;
+	private String [] ordBufferListe;
+	private int i;
+	private int ordBufferNr;
+	
+	public OrdBuffer(int heltall)
+	{
+		
+		this.ordBufferListe = new String [this.MAKS];
+                for (int i = 0; i < this.ordBufferListe.length; i++)
+                {
+                    this.ordBufferListe[i] = "2";    
+                
+                 }             
+		this.ordBufferNr = heltall;
+	}
+
+        
+        
+	
+	public synchronized void ventHvisOrdBufferErFull() throws InterruptedException
+	{ 
+           
+             while (erFull() == true)
+             {
+                 try
+                 {
+                     wait();
+                 }
+                 catch (InterruptedException e)
+                 {
+                     System.out.println("Uventet avbrudd");
+                     System.exit(1);
+                 }
+            }
+      
+             
+         }
+	
+	public synchronized void ventHvisOrdBufferErTom() throws InterruptedException
+	{
+            
+            while (erTom() == true)
+            {
+                try
+                {
+                    
+                    System.out.println("------------------------------------");
+                    wait();
+                }
+                catch (InterruptedException e)
+                {
+                    System.out.println("Uventet avbrudd");
+                    System.exit(1);
+                }
+	     }
+         }
+	
+	
+	
+	public synchronized boolean erFull()
+	{
+             int counter = 0;
+             for (int i = 0; i < this.ordBufferListe.length; i ++)
+             {
+                 if (this.ordBufferListe[i] != null && this.ordBufferListe[i].equals("2"))
+                 {
+                     counter++;
+                 }
+                 
+             }
+             if (counter == 0)
+             {
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }
+	    	
+	}
+
+        public boolean erTom()
+        {
+            int antall = 0;
+            for (int i = 0; i < this.ordBufferListe.length; i++)
+            {
+                if (this.ordBufferListe[i] != null && this.ordBufferListe[i].equals("2"))
+                {
+                   antall++;
+                }
+            }
+            if (antall == this.MAKS)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+          
+	
+	public synchronized void settInnNull()
+	{
+  
+            for (int j = 0; j < this.ordBufferListe.length; j++)
+            {
+                
+                if (this.ordBufferListe[j].equals("2"))
+                {
+                    String ord = null;
+                    this.ordBufferListe[j] = ord;
+                    j = this.ordBufferListe.length;
+               }
+            }
+                	
+	}
+	
+	public synchronized void settInnOrd(String ord)
+	{
+           
+            for (i = 0; i < this.ordBufferListe.length; i++)
+            {
+                   if (this.ordBufferListe[i].equals("2"))
+		   {
+		        this.ordBufferListe[i] = ord;
+                        i = this.ordBufferListe.length;
+                    }
+                	
+		
+	    }
+               
+    	
+	}
+	
+	public synchronized String taOrdFraForrigeOrdBuffer()
+	{
+		
+		
+		String ord = null;
+                int antallOrd = 0;
+                
+             
+                int antallNull= 0;
+                
+
+                int counter = 0;
+                System.out.println("Arbeider 2 hilser");
+                boolean funnet = false;
+                
+                for (int h = 0; h < this.ordBufferListe.length; h++)
+                {
+                     
+                     if (this.ordBufferListe[h] == null)
+                     {
+                         antallNull++;
+                        
+                     }
+                     if (this.ordBufferListe[h] != null && !this.ordBufferListe[h].equals("2"))
+                     {
+                         antallOrd++;
+                     }                           
+   
+                }
+                
+                if (antallOrd > 0)
+                {
+                    for (int i = 0; i < this.ordBufferListe.length; i++)
+                    {
+                        if (this.ordBufferListe[i] != null && !this.ordBufferListe[i].equals("2"))
+                        {
+                            ord = this.ordBufferListe[i];
+                             System.out.println("))))))))))))))))))))))) " + ord);
+                            this.ordBufferListe[i] = "2";
+                            i = this.ordBufferListe.length;
+                        }
+                    }
+              }
+              if (antallOrd > 0)
+              {
+                  return ord;
+              }
+              else
+              {
+                 for (int g = 0; g < this.ordBufferListe.length; g++)
+                 {
+                     if (this.ordBufferListe[g] == null)
+                     {
+                         this.ordBufferListe[g].equals("2");
+                         g = this.ordBufferListe.length;
+                     }
+                 }
+                 return null;
+              }
+          }
+
+       
+           
+            
+                
+	
+}
+

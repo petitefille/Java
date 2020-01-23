@@ -1,0 +1,44 @@
+java.util.concurrent;
+
+class AntallTradR extends Thread
+{
+    //tab;
+    //antallOrdPerK
+    //givenWord;
+   
+    ArrayList<String> words;
+    String[] wordsSublists;
+    //int k = 8;
+    String givenWord = "";
+    int counterWord = 0;
+    //double antallOrdPerK;
+    int antallOrdPerKInt;
+    AntallMonitor mon;
+
+    public AntallTradR(String[] wS, AntallMonitor m, int aOPKI, String gW)
+    {
+        wordsSublists = wS;
+        mon = m; 
+        antallOrdPerKInt = aOPKI;
+        givenWord = gW; 		
+    }
+   
+
+
+
+        
+    public void run()
+	{
+	    for (int y = 0; y <= antallOrdPerKInt; y++)
+		{
+		    String wordIt = wordsSublists[y];
+			 if (wordIt.equals(givenWord))
+			{
+			    counterWord ++;	
+			}	
+		}	
+		mon.giAntallVerdi(counterWord);	
+		
+	}
+}
+

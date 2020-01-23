@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Task
+{
+    public static double add(double x, double y)
+    {
+        double z = x + y;
+        return z;
+    }
+
+    public static void main(String[] args) 
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Write 2 numbers to calculate their sum: ");
+        double a = in.nextDouble();
+        double b = in.nextDouble();
+        System.out.println(add(a,b));
+    
+    }
+}

@@ -1,0 +1,17 @@
+class Eks03 {
+    
+    public static void main (String[] argumenter) {
+        Bur<Hund> hundeburet = new Bur<Hund>();
+        hundeburet.settInn(new Hund("Cara"));
+        Bur<Katt> katteburet = new Bur<Katt>();
+        Katt pus = new Katt("Pus", 5600);
+        Katt tom = new Katt("Tom2", pus);
+
+        katteburet.settInn(tom);
+        Hund h = hundeburet.taUt();
+
+        //Bur<Bil> garasje = new Bur<Bil>();
+
+        //Bur<Person> hybel = new Bur<Person>();
+    }
+}

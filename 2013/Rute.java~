@@ -1,0 +1,219 @@
+// Import
+import java.util.ArrayList;
+
+
+//	Klasse: Rute
+// =================================================================================
+/**
+   * Rute representerer en av rutene på brettet og implementerer
+   * Rutegrensesnitt og definerer de metodene som skal programmeres i
+   * oppgavene sammen med de andre metodene du kanskje får bruk for i
+   * disse. Du skal bare programmere de metodene som har et oppgavenr.
+  */
+class Rute {
+
+	/**
+         *tallverdi inneholder denne rutas verdi
+         */
+	private int tallverdi;
+	
+	protected Rad rad;
+	protected Kolonne kolonne;
+	protected Boks boks;
+
+        private Rute nesteRute;  
+
+	
+	Rute(int verdi) {
+		this.verdi = verdi;
+	}
+
+	
+	protected void provAlleSifferMegOgResten()() {
+		this.rad.hentBrett().fjernVerdier(this);
+	}
+
+	
+	public void settRad(Rad r) { this.rad = r; }
+	public void settKolonne(Kolonne k) { this.kolonne = k; }
+	public void settBoks(Boks b) { this.boks = b; }
+
+	public Rad hentRad() { return this.rad; }
+	public Kolonne hentKolonne() { return this.kolonne; }
+	public Boks hentBoks() { return this.boks; }
+
+	
+	public void settVerdi(int verdi) { this.verdi = verdi; }
+	public int hentVerdi() { return this.verdi; }
+}
+
+
+
+class FyltInnRute extends Rute implements Rutegrensesnitt {
+        /**
+         * Hvis ruta har en verdi er den et objekt av VerdiRute 
+         */
+
+	
+	FyltInnRute(int tallverdi) {
+		super(tallverdi);
+	}
+
+	
+	public void provAlleSifferMegOgResten() {
+		super.provAlleSifferMegOgResten()();
+               
+                
+                Rute ruta = this.rad.hentBrett().nesteVilkårligeTommeRute();
+                if (ruta != null)
+                    ruta.provAlleSifferMegOgResten();
+                }
+
+                
+               
+                if  (ruta == null)
+                    this.rad.hentBrett().testSvar(); 
+
+		
+	}
+}
+
+
+// 	Klasse: VariabelRute
+// =================================================================================
+class IkkeFyltInnRute extends Rute implements Rutegrensesnitt {
+        /**
+         * Hvis ruta ikke har en verdi er den et objekt av IkkeFyltInnRute
+         * Når provAlleSifferMegOgResten() kalles, vil følgende kall super.provAlleSifferMegOgResten()
+         * sørge for at de rutene som er objekter av IKkeFyltInnVerdi vil da få verdien 0.
+         */ 
+
+	
+	IkkeFyltInnRute() {
+		super(0);
+	}
+	IkkeFyltInnRute(int tallverdi) {
+		super(tallverdi);
+	}
+
+	
+	public void provAlleSifferMegOgResten() {
+		super.provAlleSifferMegOgResten();
+
+		
+		for (int verdi : this.finnAlleKandidattall()) {
+			this.settTall(tallverdi);
+
+                         Rute ruta = this.rad.hentBrett().nesteVilkårligeTommeRute();
+                         if (ruta != null)
+                             ruta.provAlleSifferMegOgResten(); 
+                         
+                                                      
+                }
+
+		
+		if (ruta == null)
+			this.rad.hentBrett().sjekkLosning();
+	}
+
+        public void oppdaterKandidattal()
+        {
+            for (int i = 0; i < this.rad.length; i++)
+                this.rad[i].finnAlleMuligeVerdier();
+                this.kolonne[i].finnAlleMuligeVerdier();
+                this.boks[i].finnAlleMuligeVerdier() 
+        }
+
+
+
+    public Rute nesteMedFærrestMulige()
+    {
+        Rute ruta = this.rad[0];
+        ArrayList <integer> tallverdier = ruta.finnMuligeVerdier();
+        
+        for (int i = 1; i < this.rad.length; i++)
+            Ruta ruten = this.rad[i];
+            ArrayList<intefer> tall = ruten.finnAlleKandidattall();
+            if tall.length < verdier.length
+                verdier = tall;
+                ruta = ruten;
+                
+    }
+
+        public void provAlleKandidatTallMegOgResten() {
+		super.provAlleSifferMegOgResten();
+
+		
+		for (int verdi : this.finnAlleKandidattall()) {
+			this.settTall(tallverdi);
+                        // sett inn forann 
+                        nesteRute = this;
+                        if (forrige != null)
+		        forrige.this.nesteRute = this;
+                            forrige = this;
+                        this.oppdaterKandidattall();
+                        Ruta neste = this.nesteMedFærrestMulige();
+                        if ( neste != null)
+                        {
+                            neste.provAlleKandidatTallMegOgResten();
+                        }
+                }
+                if (neste == null)
+                    this.rad.hentBrett().testSvar();        
+                         Rute ruta = this.rad.hentBrett().nesteVilkårligeTommeRute();
+                         if (ruta != null)
+                             ruta.provAlleSifferMegOgResten(); 
+                         
+                                                      
+                }
+
+		
+		if (ruta == null)
+			this.rad.hentBrett().testSvar();
+	}
+
+
+    public void skrivUtDenneNodenOgResten()
+        String s = foran
+
+    public void skrivUtInfoOmAlleObjekteneILista()
+    if nesteRute != null
+        String verdi = nesteRute.skrivRute();
+  
+        
+    public void SkrivRute()
+    {
+        String lStreng = "";
+     	if ((this.lesTall() > 0) && (this.lesTall() < 10))
+            System.out.println(this.lesTall());
+	else
+	    String verdiS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt((this.lesTall()-10));
+
+			        System.out.println(verdiS)
+		}
+
+		
+	
+}
+      
+            
+        
+
+   
+
+	// Finn mulige verdier i felter
+	public ArrayList<Integer> finnMuligeVerdier() {
+		ArrayList<Integer> verdier = new ArrayList<Integer>();
+
+		for (int i = 1; i <= this.rad.storrelse(); i++)
+			// Sjekk rad
+			if (!this.rad.inneholderVerdi(i))
+				// Sjekk kolonne
+				if (!this.kolonne.inneholderVerdi(i))
+					// Sjekk boks
+					if (!this.boks.inneholderVerdi(i))
+						verdier.add(i);
+		
+		return verdier;
+	}
+}

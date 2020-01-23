@@ -1,0 +1,66 @@
+import java.util.NoSuchElementException;
+
+class EnkelReseptListe extends SortertEnkelListe
+{
+	private int t;
+	
+	Resepter r;
+	
+	
+	
+   
+	
+	
+	
+	public Resepter finn(int nummer)
+	{
+		
+	    
+		Node n1 = forste;
+	    Resepter r1 = forste.objektet;
+	    boolean identity = false;
+	    if (n1 == null)
+		{
+	        throw new NoSuchElementException();
+		}	
+	    else if (n1.neste == null)
+		{
+		    if (r1.getNummer() == nummer) 
+			{
+			    return 	r1;
+			}
+            else
+			{
+			     throw new NoSuchElementException();
+			}
+        }
+		else
+		{
+            while (n1.neste != null) 
+			{
+			    if (r1.getNummer() == nummer) 
+			    {
+			        r1 = n1.objektet;	
+                    identity = true;	
+				}	
+			    n1 = n1.neste;
+			}
+		}	
+		if (identity == true)
+		{
+		    return r1;
+		}
+        else 
+		{
+		    throw new NoSuchElementException();
+		}
+	}	
+            		
+				
+				
+}	
+
+
+  
+	
+

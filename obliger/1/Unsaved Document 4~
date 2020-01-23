@@ -1,0 +1,13 @@
+ {   
+            System.out.println("*********  Test av musobjekt, testid: " + testid + " ***");
+            System.out.println("** navn: " + navn + ", OK.");
+            System.out.println("** vekt: " + vekt + " , OK.");
+            System.out.println("** lever: ") + lever + " , OK.");
+        }
+        else
+        {
+            System.out.println("*********  Test av musobjekt, testid: " + testid + " ***");
+            System.out.println("** navn: FEIL, aktuell verdi: " + syk + " , forventet verdi: " + this.syk );
+            System.out.println("** vekt: FEIL, aktuell verdi: " + vekt + " , forventet verdi: " +  this.vekt);
+            System.out.println("** lever: FEIL, aktuell verdi: " + lever + " , forventet verdi: " +  this.lever);
+        }

@@ -1,0 +1,104 @@
+import java.lang.InterruptedException;
+import java.util.concurrent.ForkJoinWorkerThread;
+
+
+
+class Arbeider extends Thread 
+{
+	private OrdBuffer [] mengde;
+	private int arbeiderNr;
+	private OversiktOverBuffere oversikt;
+        private String minsteOrd;
+	
+	public Arbeider(int arbeiderNr, OversiktOverBuffere oversikt)
+	{
+		this.arbeiderNr = arbeiderNr;
+		this.oversikt = oversikt;
+		
+	}
+
+        protected void leggTilMinsteOrd(String minsteOrd)
+        {
+            this.minsteOrd = minsteOrd;
+        }
+
+        protected String hentMinsteOrd()
+        {
+            return this.minsteOrd;
+        }
+	
+	
+	
+	protected void lagNyMengde()
+	{
+		this.mengde = new OrdBuffer[10];
+	}
+	
+	protected void setterInnNullIBuffer() throws InterruptedException
+	{
+		this.oversikt.settInnNullIBuffer(this.arbeiderNr);
+	}
+	
+	protected String henterOrdFraForrigeOrdBuffer() throws InterruptedException
+    {
+		String ord = this.oversikt.hentOrdFraForrigeOrdBuffer(this.arbeiderNr);
+		return ord;
+		
+	}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	protected void setterOrdIBuffer(String ord) throws InterruptedException
+	{
+	    this.oversikt.settInnOrdIBuffer(this.arbeiderNr, ord);	
+	}
+	
+	
+	protected void leggTilOrdBuffer(OrdBuffer buffer)
+	{
+		if (buffer == null)
+		{
+			System.out.println("Bufferen er null" + " Arbeidsnr er " + this.arbeiderNr);
+		}	
+		ensureCapacity();
+	    this.mengde[this.arbeiderNr-1] = buffer;
+		
+	}
+	
+	public void ensureCapacity()
+	{
+		System.out.println("ArbeiderNr: " + this.arbeiderNr);
+		if (this.mengde == null)
+		{
+			System.out.println("this.mengde er null");
+		}	
+		System.out.println("Lengde til listen som inneholder ORDBufferne: " + this.mengde.length);
+				
+	    if (this.arbeiderNr >=(this.mengde.length - 5))
+		{
+			OrdBuffer [] nyMengde = new OrdBuffer [this.mengde.length + 10];
+		    for (int i = 0; i < this.mengde.length; i++)
+            {
+				nyMengde[i] =this.mengde[i];
+			}
+            this.mengde = nyMengde; 			
+		}
+	}
+	
+	
+	protected int hentArbeiderNr()
+	{
+		return this.arbeiderNr;
+	}
+
+	
+	
+	
+}

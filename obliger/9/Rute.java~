@@ -1,0 +1,558 @@
+import java.lang.Object;
+
+/*
+For aa gjoere det mulig aa loese sudokubrettet maa klassen Rute i tillegg til verdi
+inneholde info om hvilken rad, kolonne og boks den tilhorer.
+
+Dette gjoeres ved at hver rute inneholder pekere til ett objekt av klassen Boks,
+ett objekt av klassen Rad og ett objekt av klassen Kolonne. Ruter i samme
+rad skal peke paa samme radobjekt osv.
+
+Disse klassene skal brukes for aa bestemme hvilke verdier av Rute som er 'opptatt' i
+raden, kolonnen og boksen, som betyr at rute sin type er false. 
+
+Klassen rad, kolonne og boks maa derfor inneholde
+info om hvilke verdier som allerede er tatt i den raden/kolonnen/boksen. -  altsaa
+maa klassen rad, kolonne og rute vite om ruten sin type er false eller true 
+*/
+
+public class Rute 
+{
+   //private Rute [][] ruter; 
+	//verdien til Rute i String
+	private String verdi;
+	// typen til Ruten r
+	// er verdien til Rute r "." er type false siden ruten ikke har en verdi 
+	// er verdien til Rute r et tall eller en bokstav som representerer et tall, saa er typen true siden ruten har en verdi 
+	private boolean type;
+	
+	// Info om hvilken rad, kolonne og boks ruten tilhoerer for aa loese sudokubrettet
+	// Boksen som  ruten er i 
+	private Boks boks; 
+	// Raden som ruten er i 
+	private Rad rad; 
+	private Rute [] raden; 
+	// Kolonnen som ruten er i
+	private Kolonne kolonne; 
+	private int antallKolonnerIBoks;
+	private int antallRaderIBoks; 
+	private int antallRaderKolonnerIBrett; 
+	private String [] alfabet; 
+	
+	
+	//private Rute [] raden; 
+	
+
+	
+	
+	
+	public void settRad(Rad r)
+	{
+		this.rad = r;
+       // Rute [] horizon = this.rad.hentRad();
+       // this.raden  = horizon; 		
+	}
+
+	public void settKolonne(Kolonne k)
+	{
+		this.kolonne = k; 
+	}
+	
+	public void settBoks(Boks b)
+	{
+		this.boks = b; 
+	}
+	
+	
+	
+    public Rute(String r)
+	// lagre verdien til Rute r som var i ruten 
+    {
+	
+		// er String  r en prikk ?
+		if (r.equals("."))
+		{
+			// da er r sin type false 
+			this.type = false;
+			// lagre verdi til ruten
+			this.verdi = r; 
+		}
+		// hvis String r er et tall eller en bokstav som representerer et tall 
+		else 
+		{
+			// lagre type til r som true, siden tallet er fylt inn med en verdi
+			this.type = true;
+			// lagre verdien til rute 
+			this.verdi = r; 
+		}
+        		
+	} 
+	
+		/*
+	Skriv tilslutt en metode i klassen Rute
+int [ ] fi n n All eM uli g e T all ( )
+
+	som returnerer en array med de tallene som er mulige løsningstall i en blank
+rute. 
+rute.finnAntallMuligeTall()
+F.eks. skal metoden kalt i øverste rute til venstre i eksempelbrettet på
+første side returnere en array med tallene 2, 3, 4, 7, 8 og 9.
+*/
+	
+	public Rad finnRad()
+	{
+		return this.rad;
+	}
+	
+	public Kolonne finnKolonne()
+	{
+		return this.kolonne; 
+	}
+	
+	public Boks finnBoks()
+	{
+		return this.boks; 
+	}
+	
+	
+	public String toString()
+	{
+		return this.verdi; //);//  + ", Rad: " + this.rad.toString() + ", Kolonne: " + this.kolonne.toString() +  ", Boks: " + this.boks.toString());
+		//  + ", Boks: " + this.boks.toString(); 
+	}
+	
+	public int [] finnAlleMuligTall()
+	{
+		char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+		                  
+        String [] alfa = new String [26];
+        for (int jeg = 0; jeg < 26; jeg ++)
+        {
+			char pot = alphabet[jeg];
+			String neg = Character.toString(pot);
+			alfa[jeg] = neg; 
+		}			
+		this.alfabet = alfa; 	
+	   String line = ""; 
+	   
+	   
+	   Rute [][] boksen = this.boks.hentBoks();
+	   int flax = boksen.length;
+	   this.antallRaderIBoks = flax; 
+	   //System.out.println("flax " + flax);
+	   int flex = boksen[0].length;
+	   this.antallKolonnerIBoks = flex; 
+	   //System.out.println("flex " + flex);
+	   for (int i = 0; i < this.antallRaderIBoks ; i++)
+	   {
+		   for(int j = 0; j < this.antallKolonnerIBoks; j++)
+		   {
+			   Rute r = boksen[i][j];
+			   String s = r.toString() ;
+			   //System.out.println(s);
+               if (!s.equals("."))
+			   {
+				    line = line + s;    
+			   }				   
+		   } 
+	   } 
+	   //System.out.println(line + " line ");
+	   Rute [] rad = this.rad.hentRad();
+	   int lange = rad.length;
+	   this.antallRaderKolonnerIBrett = lange;
+        String [] tall = new String [this.antallRaderKolonnerIBrett];
+		int count = 1; 
+		int jeppy = 0; 
+		if (this.antallRaderKolonnerIBrett < 10)
+		{
+			for(int virg = 0; virg < this.antallRaderKolonnerIBrett; virg ++ )
+			{
+				int bird = count; 
+				String pro = Integer.toString(bird);
+				tall[virg] = pro; 
+				count++;
+			}	
+		}
+        else 
+		{	
+		    for (int qo = 0; qo < this.antallRaderKolonnerIBrett; qo++)
+		    {
+			    if (qo < 9)
+			    {
+			        int smarty = count; 
+				    String proff = Integer.toString(smarty);
+				    tall[qo] = proff; 
+				    count++;	
+			    }
+                else
+                {
+					String tje = this.alfabet[jeppy];
+					
+				    tall[qo] = tje;
+                    jeppy++;					
+				}					
+		    }	
+		}	
+		for (int jo = 0; jo < this.antallRaderKolonnerIBrett; jo++)
+		{
+			String hey = tall[jo];
+			//System.out.println("jo "+ hey);
+		}	
+		
+		
+		
+		//tall[6] = "7";
+		//tall[7] = "8";
+		//tall[8] = "9";
+		//Rute [] svarene = new Rute [];	   
+	   for (int i = 0; i < this.antallRaderKolonnerIBrett; i++)
+	   {
+		   Rute r = rad[i];
+		   String s = r.toString();
+		   if (!s.equals("."))
+		   {
+			   line = line + s; 
+		   }
+	   }
+	   
+	   //System.out.println(line + " line ");
+
+       Rute [] kolonne = this.kolonne.hentKolonne();
+	   for (int i = 0; i < kolonne.length; i++)
+	   {
+		   Rute r = kolonne[i];
+		   String s = r.toString();
+		   if (!s.equals("."))
+		   {
+			   line = line + s; 
+		   }
+	   } 
+	   //System.out.println(line + " line ");
+	   line = line.trim();
+	   //System.out.println(line + " line ");
+	   
+       int len = line.length();
+	   String vague = "";
+	   String skate = "";
+	   for (int vi = 0; vi < len; vi++)
+	   {
+		   
+	   }   
+	   
+	   
+	   for (int say = 0; say < len; say ++)
+	   {
+		   //System.out.println(" say " + say);
+		   String part = line.substring(say, say+1);
+		   //System.out.println(" part" + part);
+		   int val = say + 1;
+		   for (int so = 0; so < len ; so++)
+		   {
+			   //System.out.println(" so " + so);
+			   //String wally = line.substring(so, so+1);
+			   //String star = line.substring(say, say+1);
+			   if(so != say )
+			   {
+				   //System.out.println(" if so!= say , so" + so + " != say: " + say );
+				  
+				    String word = line.substring(so, so+1); 
+                    //System.out.println(" word " + word);					
+				    if(word.equals(part))
+					{
+						//skate = skate + part;
+						
+						boolean si = false; 
+						boolean ta = false;
+						boolean haha = false; 
+						
+						for (int sale = 0; sale < vague.length(); sale++)
+						{
+							String dodo = vague.substring(sale, sale+1);
+							int fee = Integer.parseInt(dodo);
+							if (fee == so)
+							{
+								ta = true; 
+							}
+                            if (so < fee)
+                            {
+								haha = true;
+							}								
+						}	
+						//String traff = Integer.toString(so);
+						for (int zzz = 0; zzz < vague.length(); zzz++ )
+						{
+						    String tara = vague.substring(zzz,zzz+1);
+							int pal = Integer.parseInt(tara);
+							String hval = line.substring(pal, pal+1);
+							
+                            if (hval.equals(part) )
+                            {
+							    si = true; 		
+							}								
+                            							
+						}
+						if ((ta == false && si == false && haha == false) || (ta == false && si == true && haha == false) || (si == false && ta == false && haha == true))
+						{
+							
+						    vague = vague + so;	
+							//System.out.println(" vague = vague + so;" + vague);
+						}	
+                        //String traff = Integer.toString(so);						
+						
+						
+						//System.out.println(" word equals part " + word + part)	;
+						//System.out.println(" vague = vague + so;" + vague);
+					}	
+			   }   
+			  
+		   } 
+	   } 
+	   //System.out.println(" vague " + vague);
+	   vague = vague.trim();
+	   int leni = vague.length();
+	   String atlast = ""; 
+	   int tran = line.length() -1;
+	   
+	   for (int zeu = 0 ; zeu < line.length(); zeu ++)
+	   {
+		   boolean light = false;
+		   for (int zeus = 0; zeus < vague.length(); zeus ++)
+		   {
+			   String sal = vague.substring(zeus, zeus+1);
+			   int tally = Integer.parseInt(sal);
+			   if (zeu == tally)
+			   {
+				   light = true; 
+			   }   
+		   }
+		   if (light != true)
+		   {
+			   String meg = line.substring(zeu, zeu+ 1);
+			   atlast = atlast + meg; 
+		   }   
+	   }	   
+		
+			  
+		   
+	  //System.out.println("atlast "+ atlast );
+	   //String [] ta = new String [len];
+	   String numbers = "";
+       for (int i = 0; i < atlast.length(); i++)
+       {
+		   //int a = i+ 1; 
+		   //System.out.println(" i " + i + " i+1 " + a);
+		   String w = atlast.substring(i, i+1);
+		   //System.out.println(" w " + w);
+		 
+		 
+			   for (int j = 0; j < tall.length; j++)
+			   {
+				   String o = tall[j];
+				   if(w.equals(o)) 
+				   {
+					   String jS = Integer.toString(j); 
+					   numbers =numbers + j; 
+				   }					   
+			   }
+	   }
+	   String [] blank = new String [6];
+	   blank = tall; 
+	   String yes = "";
+	   System.out.println(" numbers " + numbers);
+	   int ved = numbers.length();
+	   int jepp = this.antallRaderKolonnerIBrett-ved; 
+	   int [] bingo = new int[jepp];
+       for (int i = 0; i < numbers.length(); i++)
+	   {
+		    
+		    String g = numbers.substring(i,i+1);
+			//System.out.println(" g " + g);
+			int f = Integer.parseInt(g);
+			blank[f] = null; 
+			
+	   }
+	   int counter = -1;
+       for (int wa = 0; wa < blank.length; wa++)
+       {
+		   if (blank[wa] != null)
+		   {
+			   String bla = blank[wa];
+			   counter = counter + 1;
+			   if(this.antallRaderKolonnerIBrett < 10)
+			   {
+				  int ka = Integer.parseInt(bla);
+			       //System.out.println(ka);
+			       bingo[counter] = ka; 
+			   }   
+			   else
+			   {
+				   char walter = bla.charAt(0);;
+				   if (Character.isDigit(walter))
+				   {
+					    int katt = Integer.parseInt(bla);
+			            //System.out.println(katt);
+			            bingo[counter] = katt;   
+				   } 
+				   else
+				   {
+					  
+                       int no = ((int) walter) - 55 ; 
+					   System.out.println("HER!!!" + antallRaderKolonnerIBrett);
+			            bingo[counter] = no;  
+				   }	   
+					   
+			   }   
+				   
+			   
+		   }	   
+	   } 
+		   
+	   
+	 return bingo;
+	   
+	}   
+	   
+	   /*	   
+	   
+	}   
+	   
+	   /*
+	   Rute [][] boksen = rue.hentBoks();
+	   
+	   for (int i = 0; i < 2 ; i++)
+	   {
+		   for(int j = 0; j < 3; j++)
+		   {
+			   Rute r = boksen[i][j];
+			   String s = r.toString() ;
+			   System.out.println(s);
+               if (!s.equals("."))
+			   {
+				    line = line + s;    
+			   }				   
+		   } 
+	   } 
+	  // System.out.println(line); 
+	   */
+	   
+	   /*
+       Rute [] rad = rue.hentRad();
+	   for (int i = 0; i < 6; i++)
+	   {
+		   Rute r = rad[i];
+		   String s = r.toString();
+		   if (!s.equals("."))
+		   {
+			   line = line + s; 
+		   }
+	   } 
+	   System.out.println("line " + line);
+/*	   
+       Rute [] kolonne = rue.hentKolonne();
+	   for (int i = 0; i < kolonne.length; i++)
+	   {
+		   Rute r = kolonne[i];
+		   if (r == null)
+		   {
+			   System.out.println(" i " + i + " null");
+		   }   
+	   } 
+	   */
+	   /*
+	   for (int i = 0; i < 6; i++)
+	   {
+		   
+		   Rute r = kolonne[i];
+		   
+		   String s = r.toString();
+		   if (s != ".")
+		   {
+			   line = line + s; 
+		   }
+	   }
+	   */
+	   
+	   /*
+	   line = line.trim();
+       int len = line.length();
+	  System.out.println("line "+ line );
+	   //String [] ta = new String [len];
+	   String numbers = "";
+       for (int i = 0; i < line.length(); i++)
+       {
+		   int a = i+ 1; 
+		   System.out.println(" i " + i + " i+1 " + a);
+		   String w = line.substring(i, i+1);
+		   System.out.println(" w " + w);
+		 
+		 
+			   for (int j = 0; j < tall.length; j++)
+			   {
+				   String o = tall[j];
+				   if(w.equals(o)) 
+				   {
+					   String jS = Integer.toString(j); 
+					   numbers =numbers + j; 
+				   }					   
+			   }
+	   }
+	   
+	   
+	   String yes = "";
+	   System.out.println(" numbers " + numbers);
+       for (int i = 0; i < numbers.length(); i++)
+	   {
+		    
+		    String g = numbers.substring(i,i+1);
+			System.out.println(" g " + g);
+			int f = Integer.parseInt(g);
+			for (int j = 0; j < tall.length; j++)
+			if (j != f)
+			{
+			    String val = tall[j];  
+                yes = yes + val;			
+			}	
+            
+	   }  
+       int [] bingo = new int [yes.length()];	   
+	   for (int i = 0; i < yes.length(); i++)
+	   {
+		   String what = yes.substring(i, i+1);
+		   int task = Integer.parseInt(what);
+		   bingo[i] = task;
+	   }   
+		   
+       
+		
+		for (int i = 0; i < bingo.length; i++)
+		{
+			int val = bingo[i];
+			System.out.println(val);
+		}	
+*/		
+//	}
+
+   	
+	
+
+	
+	
+}
+
+//antallRuteriBoks
+//antallRuterIBrett
+
+
+
+
+//Rad
+//Kolonne
+//Boks 
+//Hver rute vil igjen inneholde informasjon om hvilken rad,
+//kolonne og boks ruta ligger i.
+
+//en rute: 
+
+//hvilken rad
+//hvilken kolonne
+//hvilken boks 

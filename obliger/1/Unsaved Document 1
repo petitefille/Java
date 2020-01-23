@@ -1,0 +1,72 @@
+/*
+Introduksjon
+I et uthus et sted i landet, lever noen katter og mus. Musene gjemmer seg i hvert
+sitt musebol. Kattene i huset går på jakt etter mus, og de finner alltid musa i et
+bol hvis det ikke er tomt. I denne obligen skal vi modellere de ulike situasjonene
+som kan oppstå, avhengig av katters og mus’ tilstander.
+Mus
+Mus bor i bol. Ei mus som blir fanget blir alltid bitt av katten. Hvis den ikke
+blir spist, medfører dette bittet at ei frisk mus blir syk, mens ei syk mus dør.
+Mus kan med andre ord enten være friske, syke eller døde.
+For å få testene til å kjøre, trenger du i klassen Mus:
+• Private variabler med tilhørende get-metoder (også med samme navn):
+– syk : sykdomsstatus
+– vekt : i gram
+– lever : om musen er levende eller død
+• En konstruktør som tar inn vekt og syk, altså om musen er syk eller ikke.
+• En metode sjekktilstand som tar inn fem argumenter: testid, navn,
+syk, vekt, lever. Denne metoden skal sjekke om de tre siste argumentene
+matcher over ens med dataene som er lagret i musens private variabler.
+
+metode
+*/
+     
+
+public class Mus
+
+{
+    private boolean syk;
+    private double vekt;
+    private boolean lever;
+    
+    public boolean syk()
+    {
+        return syk;
+    }
+
+    public double vekt()
+    {
+        return vekt;
+    }
+   
+    public boolean lever()
+    {
+        return lever;
+    }
+  
+   
+    public Mus(double v, boolean l)
+    {
+        vekt = v;
+        lever = l;
+    }
+   
+    }
+
+    public boolean sjekktilstand(String testid, String navn, boolean syk, double vekt, boolean lever)
+    {   
+        return syk == this.syk && vekt == this.vekt && lever == this.lever;
+    } 
+
+    public String infoOmTilstand(String word)
+    {
+	System.out.println("************* Test av musobjekt, testid: " + String testid + " ***");
+        System.out.println(", mons.navn(), "Mons");
+	testOmSomForventet("kattens vekt", Integer.toString(mons.vekt()), "5000");
+	testOmSomForventet("antall mus i magen", Integer.toString(mons.antMus()), "0");
+	testOmSomForventet("om katten er syk", Boolean.toString(mons.syk()), "false");  
+    }	   
+}
+
+
+

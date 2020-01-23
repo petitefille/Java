@@ -1,0 +1,10 @@
+class Test {
+	public static void main (String[] args) {
+		Myclass<String> m = new MyClass<String>();
+		m.myMethod(42);
+	}
+}
+
+
+
+

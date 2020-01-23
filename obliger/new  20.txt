@@ -1,0 +1,3 @@
+studytechnique:
+break things into pieces: step by step, task by step, finish a small task before moving over to another
+have fun!

@@ -1,0 +1,218 @@
+import java.util.NoSuchElementException;
+class SortertEnkelListe<T extends Comparable<T> & Lik> implements AbstraktSortertListe<T>
+
+{
+
+
+    private Node forste;
+    private int antall;
+    private T objektet;
+
+    public class Node<T extends Comparable<T> & Lik>
+    {
+        Node(T t)
+        { 
+            objektet = t;
+        }
+        Node neste;
+        T objektet;
+    }
+
+    
+	
+	
+    
+		
+	
+	
+	
+	public int compareTo(T t)
+	{
+		return (this.objektet.compareTo(t));
+		
+		
+	}
+	    
+	
+	
+        public boolean samme(String nokkel)
+	   {
+		
+	        return (this.objektet.equals(nokkel));
+	   }
+	
+	 
+	
+				
+		public T iterate()
+		{
+		    Node n1 = forste;
+		    //Node n2 = n1.neste;
+		    Node verdi = n1;
+			
+		
+		    if (n1 == null)
+			{
+			    return null;
+			}
+		    else 
+			{
+			    return n1.objektet;
+			}
+		}	
+		   
+		
+
+  
+
+     public void leggTil(T t)
+    {
+	    
+	       
+		{
+		    Node n = new Node(t);
+			Node m = n;
+			Node l = n;
+			Node n1 = forste;
+			Node n2 = n1.neste;
+			Node verdi = forste;
+			Node verdi2 = null; 
+			boolean identity = false;
+			if (n1 == null)
+			{
+			    forste = n;
+				antall++;
+				
+			}
+			else if (n1.neste == null)
+			{
+				this.objektet = n1.objektet; 
+			    if (compareTo(n.objektet) > 0 ) 
+				{
+				    
+				    n1.neste = n1;
+                    n1 = n;
+					antall++;
+				}
+                else
+                {
+				    n1.neste = n;
+					antall++;
+					
+				}				
+			}		
+            else
+			{
+			    
+			    while (n1.neste != null && identity != true)
+				{
+					this.objektet = n1.objektet;
+				    
+			        if (compareTo(n.objektet) >= 0)
+					{
+				        verdi2 = n1;
+						identity = true;
+						
+						
+					}						 
+					n1 = n1.neste;
+				}
+                if (identity == true)
+                {
+					
+					this.objektet = verdi2.objektet;
+				    Node n3 = forste;
+				    while (compareTo(n3.objektet) != 0)
+					{
+						
+					    n3 = n3.neste;
+					}
+					n3.neste = n3;
+					n3 = n;
+					antall++;
+					
+				}				
+				
+				if (identity == false)
+				{
+                    while (verdi.neste != null)
+					{
+					    verdi = verdi.neste;
+					}	
+                    verdi.neste = n;
+					antall++;
+					
+				}
+                			
+			}
+			
+			
+		}
+        	
+	}		
+			
+			
+			
+	
+            
+        
+      
+       
+
+	public T finn(String nokkel)
+	{
+	    Node n1 = forste;
+		Node verdi = forste;
+		boolean identity = false;
+		if (n1 == null)
+		{
+		    throw new NoSuchElementException();
+		}
+		else if (n1.neste == null)
+		{
+		    T oN1 = n1.objektet;
+			this.objektet = oN1;
+		    if (samme(nokkel) == true)
+			{
+			    return oN1;
+			}
+			else
+			{
+				throw new NoSuchElementException();
+				
+			}	
+		
+		}
+		else 
+		{
+		    
+		    while (n1.neste != null && identity != true)
+			{
+			    T oN1 = n1.objektet;
+				this.objektet = oN1;
+			    if (samme(nokkel) == true)
+				{
+				    verdi = n1;
+					identity = true;				
+				}
+				n1 = n1.neste;
+			}
+			if (identity == true)
+			{
+			    return verdi.objektet;
+			}
+			else
+			{
+			    throw new NoSuchElementException();
+			}
+		}
+         
+    }
+	
+	
+
+
+}
+
+
+

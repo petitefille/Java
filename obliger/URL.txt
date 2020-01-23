@@ -1,0 +1,27 @@
+eksamener 
+
+INF1050 2008
+http://www.uio.no/studier/emner/matnat/ifi/INF1050/v09/undervisningsmateriale/INF1050_2008.pdf
+Løsning
+http://www.uio.no/studier/emner/matnat/ifi/INF1050/v09/undervisningsmateriale/INF1050_2008lf.pdf
+
+Interessert i gamle eksamensoppgaver? Se under INF102 på http://www.ifi.uio.no/studinf/eksamen/eksoppg/ 
+Eksamensoppgaven i INF1050 vil bli noe i samme stilen, men litt redusert i omfang (kortere eksamenstid, litt mindre pensum). 
+Vær oppmerksom på at faget er i stadig utvikling, og at løsningsforslaget derfor ville ha sett litt annerledes ut i dag.
+
+2012 
+http://softwarefun.org/wp-content/uploads/2013/10/INF1050_eksamen_2012_L%C3%B8sningsforslag_LMH.pdf
+
+http://files.petterhj.net/skole/INF1050%20-%20Eksamen%202011%20-%20L%F8sningsforslag.pdf
+http://files.petterhj.net/skole/INF1050%20-%20Eksamen%202011.pdf
+
+http://files.petterhj.net/skole/INF1050%20-%20Pr%f8veeksamen%202014%20-%20L%f8sningsforslag.pdf
+http://files.petterhj.net/skole/INF1050%20-%20Pr%f8veeksamen%202014.pdf
+
+
+http://heim.ifi.uio.no/inf1010/eksamensoppgaver/
+
+INF1010 https://github.com/petterhj/inf1010/tree/master/oblig5/oppgaver
+
+stk11100 emil
+http://folk.uio.no/emilkm/

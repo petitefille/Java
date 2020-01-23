@@ -1,0 +1,86 @@
+import java.util.concurrent.ForkJoinWorkerThread;
+
+class AntallTradR extends Thread
+{
+    String[] wordsSublists;
+    String givenWord = "";
+    int counterWord;
+    int antallOrdPerKInt;
+    AntallMonitor mon;
+
+    public AntallTradR(String[] wS, AntallMonitor m, int aOPKI, String gW)
+    {
+        wordsSublists = wS;
+        mon = m; 
+        antallOrdPerKInt = aOPKI;
+        givenWord = gW; 		
+    }
+	
+	public void run()
+	{
+		counterWord = 0;
+	    for (int y = 0; y <= antallOrdPerKInt; y++)
+		{
+		    String wordIt = wordsSublists[y];
+			 if (wordIt != null && wordIt.equals(givenWord))
+			{
+			    counterWord++;	
+			}	
+		}	
+		mon.giAntallVerdi(counterWord);	
+		
+	}
+	public void fyllInnDenneOgNeste() public void run()
+	{
+		int [] svar = finnAlleMuligTall();
+		String [] svar2 = new String[svar.length];
+		for (int i = 0; i < svar.length; i++)
+		{
+			int n = svar[i];
+			if (n <= 9)
+			{
+				String s = Integer.toString(n);
+				svar2[i] = s; 
+			}
+            else
+            {
+				int t = n-10;
+				String ss = this.alfabet[t];
+				svar2[i] = ss; 
+				
+			}				
+		}	
+		System.out.println(" ----------------------");
+	    if (this.neste != null)
+        {
+			
+			
+			for (int j = 0; j < svar2.length; j++)
+			{
+				String s = svar2[j];
+				this.verdi = s;
+                System.out.println(" j " + j);
+				System.out.println(" s " + s);
+                //this.neste.fyllInnDenneOgNeste();
+				
+				new AntallTradR(this.neste, monitor).start();
+			    monitor.vent();		
+				
+				
+				
+			}	
+				
+			
+		}
+        else
+        {
+		    for (int k = 0; k < svar2.length; k++)
+			{
+				String s = svar2[k];
+				this.verdi = s; 
+            }				
+		}			
+			
+	}
+}
+

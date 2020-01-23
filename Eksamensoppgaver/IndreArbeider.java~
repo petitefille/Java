@@ -1,0 +1,82 @@
+import java.io.*;
+import java.lang.InterruptedException;
+
+class IndreArbeider extends Arbeider
+{
+	
+	
+	public IndreArbeider(int heltall, OversiktOverBuffere oversikt)
+	{
+		super(heltall, oversikt);
+	}
+	
+	public void run() 
+	{
+		String ord = null;
+                System.out.println("hey girl!");
+		try
+		{
+                    
+		    ord = super.henterOrdFraForrigeOrdBuffer();	
+		}
+		 catch (InterruptedException exception)
+		{
+		    Thread.currentThread().interrupt();  // set interrupt flag
+            System.out.println("Arbeider nummer " + super.hentArbeiderNr() + " greide ikke aa hente ord fra forrige OrdBuffer.");	
+		}
+                 System.out.println("Arbeider 2: " + ord);
+		super.leggTilMinsteOrd(ord);
+                try
+		{
+		    ord = super.henterOrdFraForrigeOrdBuffer();	
+		}
+		 catch (InterruptedException exception)
+		{
+		    Thread.currentThread().interrupt();  // set interrupt flag
+            System.out.println("Arbeider nummer " + super.hentArbeiderNr() + " greide ikke aa hente ord fra forrige OrdBuffer.");	
+		}
+		while (ord != null)
+		{    
+	            if (ord.compareTo(super.hentMinsteOrd()) < 0)
+			{
+				   super.leggTilMinsteOrd(ord); 
+			}
+			else
+			{
+			    try
+				{
+				    super.setterOrdIBuffer(ord);	
+				}
+			    catch (InterruptedException exception)
+				{
+			        Thread.currentThread().interrupt();  // set interrupt flag
+                    System.out.println("Arbeider nummer " + super.hentArbeiderNr() + " klarte ikke aa sette inn ord i BufferOrd.");	
+				}
+			}
+            try
+            {
+			    ord = super.henterOrdFraForrigeOrdBuffer(); 		
+			}			
+			catch (InterruptedException exception)
+		    {
+			    Thread.currentThread().interrupt();  // set interrupt flag
+                System.out.println("Arbeider nummer " + super.hentArbeiderNr() + " greide ikke aa hente ord fra forrige OrdBuffer.");	
+			}		
+		}				
+		System.out.println("Jeg er arbeider nummer: " + super.hentArbeiderNr() + ".");
+		System.out.println("Det minste ordet som ble funnet var: " + super.hentMinsteOrd() + ".");
+		try
+		{
+		    super.setterInnNullIBuffer();	
+		}
+		catch (InterruptedException exception)
+		{
+			    Thread.currentThread().interrupt();  // set interrupt flag
+                System.out.println("Arbeider nummer " + super.hentArbeiderNr() + " greide ikke aa sette inn null i OrdBufferen.");		
+	    }
+		
+	}
+	
+  
+
+}

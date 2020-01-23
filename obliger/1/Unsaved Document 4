@@ -1,0 +1,12 @@
+  public void infoOmTilstand(String word)
+    {
+       
+       String vektPrint = Integer.toString(musebolet.beboer.vekt());
+       String sykPrint = Boolean.toString(musebolet.beboer.syk());
+       String leverPrint = Boolean.toString(musebolet.beboer.lever());
+               
+       System.out.println("--- " + word + " --- Info om mus: navn:" + navnPrint + " , vekt: " + vektPrint + " , syk: " + sykPrint + " , lever: " +  leverPrint);
+
+       //--- B1 --- Info om mus: navn:musNr3, vekt:39, syk:false, lever:true     
+        
+    }      

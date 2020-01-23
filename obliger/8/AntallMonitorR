@@ -1,0 +1,40 @@
+class AntallMonitorR implements AntallMonitor
+{
+    //private int minstTilNa = Integer.MAX_VALUE;
+	private int counterWordTilNa;
+    private int antallFerdigeSubtrader = 0;
+    synchronized void vent() 
+	{
+    //while (antallFerdigeSubtrader != 64) {
+	    while (antallFerdigeSubtrader != k) 
+	    {
+            try 
+			{
+			    wait();
+                System.out.println(antallFerdigeSubtrader + " ferdige subtraader ");
+            }
+            catch (InterruptedException e) 
+		    {
+                System.out.println(" Uventet avbrudd ");
+                System.exit(1);
+            }
+        // antall ferdige subtraader er naa k
+        }
+    }
+    synchronized void giAntallVerdi (int minVerdi) 
+	{
+        antallFerdigeSubtrader ++;
+		counterWordTilNa = counterWordTilNa + minVerdi;
+        if(antallFerdigeSubtrader == k)
+		{
+		    notify(); 
+		}
+		 
+     // eller hver gang, (men stort sett unoedvendig): notify();
+    }
+	
+     synchronized int hentAntall() 
+	{
+        return counterWordTilNa;
+    }
+}

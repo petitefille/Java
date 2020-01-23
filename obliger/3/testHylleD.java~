@@ -1,0 +1,22 @@
+public class testHylleD 
+
+// test som setter inn bok på en plass som ikke eksisterer
+
+{
+    public static void main (String[] args)
+   {
+        Hylle<Bok> mittBokskap;
+        mittBokskap = new Hylle<Bok>();
+        
+        Bok Bok4 = new Bok("The Hunchback of Notre-Dame, Victor Hugo");
+        if (mittBokskap.settInn(Bok4, 106) == true)
+        {
+            System.out.println("FEIL, har satt inn bok på en plass som ikke eksisterer, og boken har allikevel blitt satt inn i bokhyllen.");
+        }
+        else
+        {
+            System.out.println("OK, boken ble ikke satt inn på en plass som ikke eksisterer.");
+        }
+
+   }
+}

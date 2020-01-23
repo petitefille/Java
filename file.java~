@@ -1,0 +1,271 @@
+/** Hovedklassen for denne oppgaven. Klassen leser inn en sudokuoppgave
+ * og finner alle løsninger. NB. Du skal bare programmere ferdig det det
+ * spørres konkret etter i oppgavene.
+ */
+class Sudoku {
+
+  /**
+   * En 2-dimensjonal array som representerer sudokuspillet eller
+   * -brettet
+   */
+  Rute [][] brett;
+
+  /**
+   * Variabel som alltid inneholder antall tomme ruter (ruter uten
+   * tallverdi) i brettet. Lik n x n når brettet er tomt. Lik 0 når
+   * brettet inneholder en løsning.
+   */
+  int antallRuterIgjen;
+
+  /**
+   * Peker til en pekerkjedeliste (gjennom pekeren nesteRute) av ruter
+   * som skal liste rutene historisk etter når de fikk tallverdi satt,
+   * nyeste først, den elsdste sist.
+   */
+  Rute historikk;
+
+  /**
+   * Konstruktøren skisseres bare her og skal ikke lages ferdig i
+   * oppgaven. Brettets dimensjon bestemmes her og brettet opprettes.
+   */
+  Sudoku (int dimensjon) { .... }  
+
+  /**
+   * Rute representerer en av rutene på brettet og implementerer
+   * Rutegrensesnitt og definerer de metodene som skal programmeres i
+   * oppgavene sammen med de andre metodene du kanskje får bruk for i
+   * disse. Du skal bare programmere de metodene som har et oppgavenr.
+  */
+  class Rute implements Rutegrensesnitt {
+
+    /**
+     * tallverdi inneholder denne rutas verdi hvis den er satt. TOM_RUTE
+     * hvis ruta ikke har satt verdi.
+     */
+    private int tallverdi = TOM_RUTE;
+
+    /**
+     * Pekerkjedevariabel som i denne oppgaven brukes til å lage en
+     * liste av ruter for å holde orden på rekkefølgen rutene har fått
+     * verdi.
+     */
+    private Rute nesteRute = null;
+
+    /* Datastruktur for kandidattall mm. deklareres her */
+    .......
+
+    /**
+     * Metoder fra grensesnittet Rutegrensesnitt. Du skal bare
+     * programmere metodene som har fått oppgavenummer.
+     */
+    int dimensjon(){...};
+    int radNr(){...};
+    int kolonneNr(){...};
+    int lesTall(){...};
+    void settTall(int j){...};
+    Rute [] iSammeRad(){...};
+    Rute [] iSammeKolonne()
+    {
+	    int kolonneNr = this.hentKolonneNr;
+		String verdier;
+        while nesteRute != null 
+		{
+		    Rute r = nesteRute;
+			if nesteRute.hentKolonneNr == kolonneNr
+			int verdi = nesteRute.hentVerdi();
+			String i = Integer.toString(verdi);
+			verdier = verdier + i;
+		}
+		int [] verdierKolonne = new int [verdier.length()];
+		for (int k = 0; k < verdier.length(); k++)
+		{
+		    String i = verdier.substring(k,k+1);
+            int value = integer.parseInt(i);
+            verdierKolonne[k] = value;			
+		}
+		
+		return verdierKolonne();
+	
+	}
+	{ /* oppgave 2 */ };
+    Rute [] iSammeBoks(){...};
+    void oppdaterKandidattall(){ /* oppgave 3 */ };
+    int nesteKandidatTall(){...};
+    void varsleBerørteRuter(){...};
+    void harFunnetLøsning(){...};
+    Rute nesteMedFærrestMulige(){...};
+    void provAlleSifferMegOgResten() { /* oppgave 1 */ };
+    void provAlleKandidatTallMegOgResten() { /* oppgave 4 og 5 */ };
+    void skrivLøsningsListe(Rute ruteListe) { /* oppgave 6 */ };
+    void skrivRute(){...};
+  } /** end Rute */
+    
+} /** end class Sudoku */
+
+/**
+ * Et grensesnitt for en klasse som skal implementere en rute i et
+ * sudokubrett. Inneholder noen metoder du skal programmere ut (i
+ * klassen Rute som implementerer Rutegrensesnitt) som en del av
+ * besvarelsen. De andre metodene skal du ikke skrive, men du kan bruke
+ * dem.
+ */
+interface Rutegrensesnitt {
+  
+  /**
+   *verdien en rute har når den er tom
+   */
+  static final int TOM_RUTE = -999;
+    
+  /**
+   * dimensjonen til sudokubrettet
+   *
+   * dimensjonen er lik antall rader og kolonner og lik antall ruter i en
+   * boks for det brettet denne ruta hører til. For eks. for et 9 x 9 brett
+   * er dimensjonen lik 9.
+   *
+   * @return sudokubrettets dimensjon
+   */
+  int dimensjon();
+
+  /**
+   * @return radnummeret til raden ruta hører til (nummerert ovenfra og
+   * ned, 1, 2, ..., n).
+   */
+  int radNr();
+
+  /**
+   * @return kolonnenummeret til kolonnen ruta hører til (nummerert fra
+   * venstre mot høyre, 1, 2, ..., n).
+   */
+  int kolonneNr();
+
+  /**
+   * @return rutas tallverdi hvis det er satt, TOM_RUTE hvis
+   * ruta er tom.
+   */
+  int lesTall();
+
+  /**
+   * @param tallet ruta skal ha/verdien ruta skal settes til
+   */
+  void settTall(int j);
+
+  /**
+   * @return en array med pekere til de ruteobjektene som er i samme rad
+   * som denne ruta.
+   */
+  Rute [] iSammeRad();
+
+  /**
+   * @return en array med pekere til de ruteobjektene som er i samme
+   * kolonne som denne ruta.
+   */
+  Rute [] iSammeKolonne();
+
+    /**
+   * @return en array med pekere til de ruteobjektene som er i samme boks
+   * som denne ruta.
+   */
+  Rute [] iSammeBoks();
+
+  /**
+   * oppdaterer kandidattallene til en rute ved å sjekke hvilke tall som
+   * er satt i de berørte rutene.
+   */
+  void oppdaterKandidattall();
+  {
+      Rute verdierRad
+	  Rute verdierKolonne
+	  Rute verdierBoks
+	  this.iSammeRad()
+	  for 
+	      finn alleMuligeKanditat
+	  this.iSammeBoks()
+	  this.iSammeKolonne()
+	  
+  }
+  /**
+   * @return neste kandidattall for denne ruta en etter en. Er det ingen
+   * (igjen) returnerer den TOM_RUTE.
+   */
+  int nesteKandidatTall();
+
+  /** 
+   * sender et varsel til berørte ruter om at at det har skjedd en
+   * endring (ny eller fjerning) av tall i denne ruta. Berørte ruter
+   * kaller i sin tur oppdaterKandidattall for å fange opp denne
+   * endringen. Etter kallet er alle ruters kandidattall korrekte.
+   */
+  void varsleBerørteRuter();
+
+  /**
+   * kalles når det er plassert et tall i alle ruter og programmet har
+   * funnet en løsning på sudokuoppgaven
+   */
+  void harFunnetLøsning();
+
+  /**
+   * @return returnerer (en peker til) den ruta
+   * med færrest kandidattall, evt. til en av dem hvis flere.
+   */
+  Rute nesteMedFærrestMulige();
+
+  /**
+   * @return returnerer (en peker til) en (vilkårlig) tom rute.
+   */
+  Rute nesteVilkårligeTommeRute();
+  {
+      if (nesteRute != null && nesteRute.hentVerdi() == 999)
+	  {
+	     return nesteRute;
+	  }
+	  else if (nesteRute == null)
+	  {
+	      return null; 
+	  }
+  }
+
+  /** Finner alle løsninger for et gitt brett ved å prøve alle mulige (kandidattall)
+    * tall i denne ruta () og så kalle provAlleSifferMegOgResten i neste
+    * tomme rute. Referanse til neste tomme rute fås ved å kalle
+    * nesteVilkårligeTommeRute().
+   */
+  void provAlleSifferMegOgResten();
+  {
+       for(int verdi : this.finnMuligeKandidattall();)
+	   {
+	       this.settVerdi(verdi);
+		   if (this.nesteVilkarligeTommeRute() != null)
+		   {
+		       this.nesteVilkarligeTommeRute().provAlleSifferMegOgResten();
+		   }
+	   }
+       	   
+  }
+  
+  
+  /**
+   * Finner alle løsninger for et gitt brett ved å prøve alle mulige
+   * tall i denne ruta og så kalle provAlleKandidatTallMegOgResten i den
+   * tomme ruta med færrest kandidattall. Referanse til denne fås ved å
+   * kalle nesteMedFærrestMulige().
+   */
+  void provAlleKandidatTallMegOgResten();
+
+  /** Skriver løsningshistorikken i kronologisk (historisk) orden.
+   *
+   * Lista som kommer inn som parameter peker på en pekerkjedliste av
+   * ruter i omvendt rekkefølge som de skal skrives ut. Selve utskriften
+   * skjer ved å kalle skrivRute().
+   *
+   * @param peker til liste av ruter i omvendt rekkefølge som de skal
+   * skrives ut.
+   */
+  void skrivLøsningsListe(Rute ruteListe);
+
+  /**
+   * Metode som brukes av skrivLøsningsListe når en rute skal skrives
+   * ut. Denne skal ikke programmeres i besvarelsen.
+   */
+  void skrivRute();
+}

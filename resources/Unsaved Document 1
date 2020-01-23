@@ -1,0 +1,25 @@
+Node n = første;
+        boolean funnet = false;
+        while (n != null)
+        {
+             = n.
+            if (e.equals(n))
+            {
+                funnet = true;
+            }                 
+            else
+            { 
+               n = n.neste;
+            }
+        }
+        if (! funnet)
+        {
+            return false;
+        }            
+        else
+        {
+            return true;      
+        }
+       
+    }    
+    

@@ -1,0 +1,117 @@
+import java.io.File;
+import java.io.*;
+import java.lang.InterruptedException;
+
+//import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+
+
+//import java.lang.Object;
+//import java.util.*;
+//import java.lang.reflect.Method;  
+
+class ForsteArbeider extends Arbeider
+{
+	private File innFil;
+
+	
+	
+	public ForsteArbeider(int heltall, OversiktOverBuffere oversikt, String innFilnavn)
+	{
+		super(heltall, oversikt);
+		this.innFil = finnFil(innFilnavn);
+		
+		
+		
+		
+		
+	}
+	
+	public File finnFil(String filnavn) 
+	{
+		if ((filnavn != null) || (filnavn == "")) 
+		{
+			return new File(filnavn);
+		}
+
+		return null;
+	}
+	
+	public void run() 
+	{
+		doTask();
+	}
+
+	public void doTask() 
+	{
+		lesFil();
+	}
+	
+    public void lesFil() 
+    {		
+		try
+		{
+		    BufferedReader tekst = new BufferedReader(new FileReader(this.innFil));
+			String ord;
+			int linjeNr = 0;
+			while ((ord = tekst.readLine()) != null)
+            {
+                            System.out.println("Ord: " + ord);
+			    linjeNr++;
+				if (linjeNr == 1)
+				{
+				    super.leggTilMinsteOrd(ord);
+				}
+				if (linjeNr > 1)
+				{
+				    
+				    if (ord.compareTo(super.hentMinsteOrd()) < 0)
+					{
+					    super.leggTilMinsteOrd(ord); 
+					}
+					else
+					{
+					    
+					    try
+						{
+                                                   System.out.println("hei");
+						    super.setterOrdIBuffer(ord);
+							
+                            							
+						}
+					    catch (InterruptedException exception)
+						{
+						     Thread.currentThread().interrupt();  // set interrupt flag
+                             System.out.println("Den forste arbeideren klarte ikke aa sette inn ord i OrdBufferen. ");	
+						}
+						
+					
+						
+					}
+				}
+			}
+            System.out.println("Jeg er arbeider nummer: " + super.hentArbeiderNr() + ".");
+		    System.out.println("Det minste ordet som ble funnet var: " + super.hentMinsteOrd() + ".");
+			try
+			{
+			    super.setterInnNullIBuffer();	
+			}
+		    catch (InterruptedException exception)
+			{
+			    Thread.currentThread().interrupt();  // set interrupt flag
+                System.out.println("Den forste arbeider klarte ikke aa sette inn null i OrdBufferen.");		
+			}
+			tekst.close();   
+					
+				
+		}		
+		
+		catch(IOException e)
+		{
+            System.out.println("[X] Kunne ikke lese filen!");
+        	
+        }
+	}
+	
+}

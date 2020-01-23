@@ -1,0 +1,30 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.lang.Object;
+
+class Task{
+
+
+public static void main (String[] args) 
+	{	
+	// oppretter et objekt av klassen sudoku
+	    Brett brettet = new Brett();
+		// lagrer brettet hvor man da har lagret ruter arrayen gjennom lesFil()
+	    brettet.lesFil();
+		//brettet.delInnIRuter();
+		brettet.skrivUtRuteneIBrettet();
+		brettet.delInnIRuter();
+		//brettet.task();
+		//brettet.finnAlleMuligTall();
+     		
+		//skriv ut all rutene i 2D Rute array lagret i Brett 
+       // s.skrivUtRuteneIBrettet(b);		
+	 
+	}
+}

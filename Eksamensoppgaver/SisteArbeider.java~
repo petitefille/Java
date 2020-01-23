@@ -1,0 +1,99 @@
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.*;
+import java.io.IOException;
+
+
+class SisteArbeider extends Arbeider
+{
+	private File utFil;
+	private String minsteOrd; 
+	
+	
+	public SisteArbeider(int heltall, OversiktOverBuffere oversikt String utFilnavn)
+	{
+	    super(heltall, oversikt);
+        this.utFil = finnFil(utFilnavn);		
+	}
+	
+	public File finnFil(String filnavn) 
+	{
+		if ((filnavn != null) || (filnavn == "")) 
+		{
+			return new File(filnavn);
+		}
+
+		return null;
+	}
+	
+	public void run() 
+	{
+		try
+		{ 
+		    PrintWriter fil = new PrintWriter(new FileWriter(this.utFil));
+		
+            		
+		    String ord = null;
+		
+		    try
+		    {
+		        ord = super.henterOrdFraForrigeOrdBuffer();	
+		    }
+		     catch (InterruptedException exception)
+		    {
+		        Thread.currentThread().interrupt();  // set interrupt flag
+                System.out.println("Siste arbeider greide ikke aa hente ord fra forrige buffer.");	
+		    }
+		    super.leggTilMinsteOrd(ord);
+                    try
+		    {
+		        ord = super.henterOrdFraForrigeOrdBuffer();	
+		    }
+		     catch (InterruptedException exception)
+		    {
+		        Thread.currentThread().interrupt();  // set interrupt flag
+                System.out.println("Siste arbeider greide ikke aa hente ord fra forrige buffer.");	
+		    }
+		    while (ord != null)
+		    {    
+	            if (ord.compareTo(super.hentMinsteOrd()) < 0)
+			    {
+				       super.leggTilMinsteOrd(ord); 
+			    }
+			    else
+			    {
+			        fil.println(ord);    
+			    }
+                try
+                {
+			        ord = super.henterOrdFraForrigeOrdBuffer(); 		
+			    }			
+			    catch (InterruptedException exception)
+		        {
+			        Thread.currentThread().interrupt();  // set interrupt flag
+                    System.out.println("Siste arbeider greide ikke aa hente ord fra forrige buffer.");	
+			    }		
+		    }
+		fil.close();	
+        }
+        catch (IOException e)
+		{
+		    System.out.println("[X] Kunne ikke skrive til fil!");	
+		}
+		System.out.println("Jeg er arbeider nummer: " + super.hentArbeiderNr() + ".");
+		System.out.println("Det minste ordet som ble funnet var: " + this.minsteOrd + ".");
+		try
+		{
+		    super.setterInnNullIBuffer();	
+		}
+		catch (InterruptedException exception)
+		{
+		    Thread.currentThread().interrupt();  // set interrupt flag
+            System.out.println("Arbeider nummer " + super.hentArbeiderNr() + " greide ikke aa sette inn null i OrdBufferen.");		
+	    }
+		
+	}
+	
+	
+}

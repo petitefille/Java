@@ -1,0 +1,13 @@
+ public static double multiply(double f, double g);
+    {
+        double h = f * g;
+        return h;
+    }
+    public static double divide(double i, double j);
+    {
+        double k = i / j;
+        return k;
+
+System.out.println(multiply(a,b));
+        System.out.println(divide(a,b))
+
